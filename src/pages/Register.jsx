@@ -1,11 +1,36 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import AuthContext from '../context/AuthContext';
 
 const Register = () => {
+    const {createUser, updateUserProfile} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const handleCreateUser = e => {
+        e.preventDefault();
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const photo = e.target.photo.value;
+        const password = e.target.password.value;
+        // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+        console.log(name,email,photo,password);
+        createUser(email, password)
+        .then(res => {
+            updateUserProfile({ displayName: name, photoURL: photo })
+            console.log(res.user);
+            
+        })
+        .catch(error => {
+            console.log(error.message);
+            
+        })
+        e.target.reset();
+        navigate('/')
+        
+    }
     return (
         <div className="md:w-8/12 mx-auto">
         <h1 className="text-2xl font-bold text-center my-5">Register</h1>
-            <form  className="card-body">
+            <form onSubmit={handleCreateUser}  className="card-body">
                 {/* name************************************* */}
                 <div className="form-control">
                     <label className="label">
