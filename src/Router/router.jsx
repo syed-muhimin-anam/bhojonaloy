@@ -4,6 +4,7 @@ import {
 import MainLayout from "../Layout/MainLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
+import Home from "../Home page/Home";
   
 
   const router = createBrowserRouter([
@@ -12,6 +13,10 @@ import Register from "../pages/Register";
       element: <MainLayout></MainLayout>,
       errorElement: <h1>path not found</h1>,
       children: [
+        {
+            path: '/',
+            element: <Home></Home>
+        },
         {
             path: 'login',
             element: <Login></Login>
