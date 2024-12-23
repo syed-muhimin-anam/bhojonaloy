@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     const item = <>
@@ -39,16 +39,10 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end flex items-center ">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
-                        <img
-                            alt="Tailwind CSS Navbar component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
-                    </div>
-                </div>
-
+                <Link to={'login'} className='btn'>Login</Link>
+              
             </div>
-           
+            
         </div>
     );
 };
