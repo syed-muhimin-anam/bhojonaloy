@@ -6,7 +6,7 @@ const Navbar = () => {
     const {user, logout} = useContext(AuthContext)
     const item = <>
         <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='/'>All Foods</NavLink></li>
+        <li><NavLink to='allFoods'>All Foods</NavLink></li>
         <li><NavLink to='/'>Gallery</NavLink></li>
     </>;
     const handleLogout = () => {
