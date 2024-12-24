@@ -5,6 +5,7 @@ import MainLayout from "../Layout/MainLayout";
 import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../Home page/Home";
+import FoodDetails from "../pages/FoodDetails";
   
 
   const router = createBrowserRouter([
@@ -24,6 +25,11 @@ import Home from "../Home page/Home";
         {
             path: 'register',
             element: <Register></Register>
+        },
+        {
+          path:"foodDetails/:id",
+          element: <FoodDetails></FoodDetails>,
+          loader:({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
         }
       ]
     },

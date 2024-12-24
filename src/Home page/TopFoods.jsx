@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const TopFoods = () => {
     const [foods, setFoods] = useState([]);
+    
 
     useEffect(() => {
         fetch('http://localhost:5000/foods')
@@ -28,8 +30,10 @@ const TopFoods = () => {
                             <h2 className="text-lg font-semibold text-white">{food.foodName}</h2>
                             <h3 className="text-sm text-gray-400">Origin: {food.foodOrigin}</h3>
                             <p className="text-sm text-gray-300 mb-3">{food.description}</p>
+                            <p className="text-sm text-gray-300 mb-3">{food.purchase}</p>
                             <h4 className="text-lg font-bold text-white">${food.price}</h4>
-                            <button className="btn bg-purple-400 text-black w-full mt-3 rounded-none">Details</button>
+
+                            <Link to={`/foodDetails/${food._id}`}><button className="btn bg-purple-400 text-black w-full mt-3 rounded-none">Details</button></Link>
                         </div>
                     </div>
                 ))}
