@@ -19,9 +19,10 @@ if (loading) {
             price: purchaseFood.price,
             quantity: parseFloat(e.target.quantity.value),
             purchaseBy : {
-                name: user.displayName,
-                email : user.email
-            }
+                name: user?.displayName,
+                email : user?.email
+            },
+            purchaseTime: new Date().toLocaleString()
 
         }
         console.log(purchaseDetails);
@@ -89,7 +90,7 @@ if (loading) {
                         <label className="block text-sm font-medium mb-1">Buyer Name</label>
                         <input
                             type="text"
-                            value={user.displayName}
+                            value={user?.displayName}
                             readOnly
                             className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
                         />
@@ -98,7 +99,7 @@ if (loading) {
                         <label className="block text-sm font-medium mb-1">Buyer Email</label>
                         <input
                             type="email"
-                            value={user.email}
+                            value={user?.email}
                             readOnly
                             className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
                         />

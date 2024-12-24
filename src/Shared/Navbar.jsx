@@ -59,7 +59,8 @@ const Navbar = () => {
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
                         <li>My Foods</li>
                         <li>Add food</li>
-                        <li>My Orders</li>
+                        <Link to={'myOrders'}> <li className='btn btn-sm w-full'>My Orders</li> </Link>
+                       
                     </ul>
                     <button onClick={handleLogout} className='btn'>Logout</button>
                 </div> : <Link to={'login'} className='btn'>Login</Link>
