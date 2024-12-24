@@ -1,5 +1,6 @@
 import React from 'react';
 import bannerImage from '../assets/banner-Image1.jpg';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
     return (
@@ -16,7 +17,8 @@ const Banner = () => {
                         Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
                         quasi. In deleniti eaque aut repudiandae et a id nisi.
                     </p>
-                    <button className="btn btn-primary">Get Started</button>
+                    <Link to={'/allFoods'}>   <button className="btn btn-primary">All Foods</button></Link>
+                 
                 </div>
             </div>
         </div>

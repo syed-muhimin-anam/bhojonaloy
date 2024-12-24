@@ -1,6 +1,7 @@
 import React from 'react';
 import Banner from './Banner';
 import TopFoods from './TopFoods';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
@@ -12,6 +13,7 @@ const Home = () => {
             <main>
                 <div>
                 <TopFoods></TopFoods>
+                <Link  to={'/allFoods'}><button className='btn'>See All</button></Link>
                 </div>
                 
             </main>
