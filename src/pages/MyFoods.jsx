@@ -13,6 +13,26 @@ import { Link } from 'react-router-dom';
                     setMyFoods(data)
                 })
         }, [user?.email])
+
+        const handleDelete = id => {
+            fetch(`http://localhost:5000/allFoods/${id}`, {
+                method: "DELETE",
+            })
+                .then((res) => {
+                    // if (loading === true) {
+                    //     return <Loading />;
+                    // }
+                    return res.json();
+                })
+                .then((data) => {
+                    // console.log(data);
+                    
+                    if (data.deletedCount > 0) {
+                        const remaining = myFoods.filter((food) => food._id !== id);
+                        setMyFoods(remaining);
+                    }
+                });
+        }
         return (
             <div>
             <h1>My Foods</h1>
@@ -55,7 +75,7 @@ import { Link } from 'react-router-dom';
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
                                         <Link to={`/foodUpdate/${myFood._id}`}><button className='btn btn-sm'>Update</button></Link>
-                                        <button className='btn btn-sm'>Delete</button>
+                                        <button onClick={()=>handleDelete(myFood._id)} className='btn btn-sm'>Delete</button>
                                     </td>
                                 </tr>
                             ))}

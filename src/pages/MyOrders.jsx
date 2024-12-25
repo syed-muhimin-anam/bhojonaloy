@@ -13,6 +13,25 @@ const MyOrders = () => {
                 setMyOrders(data);
             })
     }, [user?.email]);
+    const handleDelete= (id) => {
+        fetch(`http://localhost:5000/allPurchase/${id}`, {
+            method: "DELETE",
+        })
+            .then((res) => {
+                // if (loading === true) {
+                //     return <Loading />;
+                // }
+                return res.json();
+            })
+            .then((data) => {
+                // console.log(data);
+                
+                if (data.deletedCount > 0) {
+                    const remaining = myOrders.filter((order) => order._id !== id);
+                    setMyOrders(remaining);
+                }
+            });
+    } 
    
     return (
         <div>
@@ -33,6 +52,7 @@ const MyOrders = () => {
                                 <th className="border border-gray-300 px-4 py-2 text-left">Price</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Stock</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Details</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -52,10 +72,10 @@ const MyOrders = () => {
                                         {myOrder.purchaseTime}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
-                                        {/* <Link to={`/details/${myOrder._id}`}>
-                                            <button className="btn">View Details</button>
-                                        </Link> */}
                                         {myOrder.foodImage}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                       <button onClick={() => handleDelete(myOrder._id)} className='btn btn-sm'>Delete</button>
                                     </td>
                                 </tr>
                             ))}
