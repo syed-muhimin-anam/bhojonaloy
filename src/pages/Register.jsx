@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 
 const Register = () => {
     const {createUser, updateUserProfile} = useContext(AuthContext);
+    const location = useLocation();
     const navigate = useNavigate();
+    const from = location.state || '/';
+
     const handleCreateUser = e => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -24,7 +27,7 @@ const Register = () => {
             
         })
         e.target.reset();
-        navigate('/')
+        navigate(from);
         
     }
     return (

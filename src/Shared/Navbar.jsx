@@ -7,7 +7,7 @@ const Navbar = () => {
     const item = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='allFoods'>All Foods</NavLink></li>
-        <li><NavLink to='/'>Gallery</NavLink></li>
+        <li><NavLink to='/gallery'>Gallery</NavLink></li>
     </>;
     const handleLogout = () => {
             logout();
