@@ -1,5 +1,6 @@
     import React, { useContext, useEffect, useState } from 'react';
     import AuthContext from '../context/AuthContext';
+import { Link } from 'react-router-dom';
 
     const MyFoods = () => {
         const [myFoods, setMyFoods] = useState([]);
@@ -17,9 +18,7 @@
             <h1>My Foods</h1>
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="mb-4 ">
-                    {/* <button onClick={handleSort} className="btn">
-                        Sort
-                    </button> */}
+                    
                 </div>
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full border-collapse border border-gray-300">
@@ -31,6 +30,8 @@
                                 <th className="border border-gray-300 px-4 py-2 text-left">Price</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Stock</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Details</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Up/Del</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -50,10 +51,11 @@
                                         {myFood.purchaseTime}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
-                                        {/* <Link to={`/details/${myFood._id}`}>
-                                            <button className="btn">View Details</button>
-                                        </Link> */}
                                         {myFood.foodImage}
+                                    </td>
+                                    <td className="border border-gray-300 px-4 py-2">
+                                        <Link to={`/foodUpdate/${myFood._id}`}><button className='btn btn-sm'>Update</button></Link>
+                                        <button className='btn btn-sm'>Delete</button>
                                     </td>
                                 </tr>
                             ))}

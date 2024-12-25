@@ -13,6 +13,7 @@ import AddFood from "../pages/AddFood";
 import MyFoods from "../pages/MyFoods";
 import Gallery from "../pages/Gallery";
 import PrivateRout from "./PrivateRout";
+import FoodUpdate from "../pages/FoodUpdate";
   
 
   const router = createBrowserRouter([
@@ -64,6 +65,11 @@ import PrivateRout from "./PrivateRout";
         {
           path:'gallery',
           element:<Gallery></Gallery>
+        },
+        {
+          path:'foodUpdate/:id',
+          element: <FoodUpdate></FoodUpdate>,
+          loader:({params}) => fetch(`http://localhost:5000/allFoods/${params.id}`)
         }
       ]
     },
