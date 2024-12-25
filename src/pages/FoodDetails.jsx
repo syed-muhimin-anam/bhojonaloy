@@ -34,13 +34,15 @@ const FoodDetails = () => {
                         <p>
                             <span className="font-semibold">Added By:</span> {foodDetail.addedBy.name}
                         </p>
+                        <p>
+                            <span className="font-semibold">Purchase Count:</span> {foodDetail.purchase || 0}
+                        </p>
                         <div className="mt-5">
                             <Link to={`/purchase/${foodDetail._id}`}>
                                 <button className="w-full px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded transition">
                                     Purchase
                                 </button>
                             </Link>
-
                         </div>
                     </div>
                 </div>

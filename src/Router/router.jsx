@@ -36,12 +36,12 @@ import PrivateRout from "./PrivateRout";
         {
           path:"foodDetails/:id",
           element: <FoodDetails></FoodDetails>,
-          loader:({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+          loader:({params}) => fetch(`http://localhost:5000/allFoods/${params.id}`)
         },
         {
           path: 'purchase/:id',
           element: <PrivateRout><Purchase></Purchase></PrivateRout>,
-          loader:({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+          loader:({params}) => fetch(`http://localhost:5000/allFoods/${params.id}`)
         },
         {
           path: 'myOrders',
