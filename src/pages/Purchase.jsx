@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Purchase = () => {
     const { user, loading } = useContext(AuthContext);
@@ -48,6 +49,12 @@ const Purchase = () => {
             .then((res) => res.json())
             .then((data) => {
                 console.log("Server Response:", data);
+                 Swal.fire({
+                                title: "Successfully added",
+                                icon: "success",
+                                draggable: true
+                              });
+                              
                 if (data.insertedId) {
                     fetch(`http://localhost:5000/allFoods/${purchaseDetails.food_id}`, {
                         method: 'PUT',
@@ -64,6 +71,7 @@ const Purchase = () => {
                 }
             })
             .catch((error) => console.error("Error:", error));
+            e.target.reset();
     };
     
     return (

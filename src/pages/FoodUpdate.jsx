@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 const FoodUpdate = () => {
     // const{user} = useContext(AuthContext);
+    const navigate = useNavigate();
     const prevFoodDtls = useLoaderData();
     const handleUpdate = e => {
         e.preventDefault();
@@ -33,17 +35,18 @@ const FoodUpdate = () => {
           })
             .then((res) => res.json())
             .then((data) => {
-            //   Swal.fire({
-            //     title: "Congratulations!",
-            //     text: "successfully updated your item!",
-            //     icon: "success"
+              Swal.fire({
+                title: "Congratulations!",
+                text: "successfully updated your Food!",
+                icon: "success"
       
-            //   });
+              });
+
             console.log(data);
             
       
               e.target.reset();
-            //   navigate('/')
+              navigate('/')
             });
     }
     return (

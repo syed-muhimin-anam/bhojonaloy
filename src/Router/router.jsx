@@ -51,7 +51,7 @@ import FoodUpdate from "../pages/FoodUpdate";
         {
           path: 'allFoods',
           element: <AllFoods></AllFoods>,
-          loader:() => fetch('http://localhost:5000/allFoods')
+          // loader:() => fetch('http://localhost:5000/allFoods')
         },
         {
           path: 'addFood',
@@ -70,7 +70,8 @@ import FoodUpdate from "../pages/FoodUpdate";
           path:'foodUpdate/:id',
           element: <FoodUpdate></FoodUpdate>,
           loader:({params}) => fetch(`http://localhost:5000/allFoods/${params.id}`)
-        }
+        },
+        
       ]
     },
   ]);

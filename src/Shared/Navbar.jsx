@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
     const {user, logout} = useContext(AuthContext)
@@ -11,6 +12,11 @@ const Navbar = () => {
     </>;
     const handleLogout = () => {
             logout();
+             Swal.fire({
+                            title: "Successfully logged Out",
+                            icon: "success",
+                            draggable: true
+                          });
     }
     return (
         <div className="navbar bg-base-100  md:w-10/12 mx-auto">
@@ -57,9 +63,6 @@ const Navbar = () => {
                     <ul
                         tabIndex={0}
                         className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <li>My Foods</li>
-                       
-                      
                         <Link to={'myOrders'}> <li className='btn btn-sm w-full'>My Orders</li> </Link>
                         <Link to={'addFood'}> <li className='btn btn-sm w-full'>Add food</li> </Link>
                         <Link to={'myFoods'}> <li className='btn btn-sm w-full'>My Foods</li> </Link>

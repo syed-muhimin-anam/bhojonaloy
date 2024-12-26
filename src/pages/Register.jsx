@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
+import Swal from 'sweetalert2';
 
 const Register = () => {
     const {createUser, updateUserProfile} = useContext(AuthContext);
@@ -14,20 +15,39 @@ const Register = () => {
         const email = e.target.email.value;
         const photo = e.target.photo.value;
         const password = e.target.password.value;
-        // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
-        console.log(name,email,photo,password);
-        createUser(email, password)
+        const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/;
+       
+        if (passwordRegex.test(password)) {
+            createUser(email, password)
         .then(res => {
             updateUserProfile({ displayName: name, photoURL: photo })
-            console.log(res.user);
+            Swal.fire({
+                title: "Successfully Registered",
+                icon: "success",
+                draggable: true
+              });
+            e.target.reset();
+            navigate(from);
             
         })
         .catch(error => {
-            console.log(error.message);
+            Swal.fire({
+                title:error.message,
+                icon: "error",
+                draggable: true
+              });
             
         })
-        e.target.reset();
-        navigate(from);
+        }
+        else{
+            Swal.fire({
+                title:'  Please contain at least one uppercase, one lowercase one number and 6 char long',
+                icon: "error",
+                draggable: true
+              });
+        }
+        
+        
         
     }
     return (

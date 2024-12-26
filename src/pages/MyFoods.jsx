@@ -1,44 +1,64 @@
-    import React, { useContext, useEffect, useState } from 'react';
-    import AuthContext from '../context/AuthContext';
+import React, { useContext, useEffect, useState } from 'react';
+import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../custom hooks/useAxiosSecure';
 
-    const MyFoods = () => {
-        const [myFoods, setMyFoods] = useState([]);
-        const { user } = useContext(AuthContext)
-        useEffect(() => {
-            fetch(`http://localhost:5000/myFoods?email=${user?.email}`)
-                .then(res => res.json())
-                .then(data => {
-                    console.log(data);
-                    setMyFoods(data)
-                })
-        }, [user?.email])
+const MyFoods = () => {
+    const [myFoods, setMyFoods] = useState([]);
+    const { user } = useContext(AuthContext);
+    const axiosSecure = useAxiosSecure();
+    useEffect(() => {
+ 
 
-        const handleDelete = id => {
-            fetch(`http://localhost:5000/allFoods/${id}`, {
-                method: "DELETE",
-            })
-                .then((res) => {
-                    // if (loading === true) {
-                    //     return <Loading />;
-                    // }
-                    return res.json();
-                })
-                .then((data) => {
-                    // console.log(data);
-                    
-                    if (data.deletedCount > 0) {
-                        const remaining = myFoods.filter((food) => food._id !== id);
-                        setMyFoods(remaining);
-                    }
+        axiosSecure.get(`/myFoods?email=${user?.email}`)
+        .then(res => setMyFoods(res.data))
+
+    }, [user?.email])
+
+    const handleDelete = id => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You want to delete this item??",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
                 });
-        }
-        return (
-            <div>
+                fetch(`http://localhost:5000/allFoods/${id}`, {
+                    method: "DELETE",
+                })
+                    .then((res) => {
+                        // if (loading === true) {
+                        //     return <Loading />;
+                        // }
+                        return res.json();
+                    })
+                    .then((data) => {
+                        // console.log(data);
+
+                        if (data.deletedCount > 0) {
+                            const remaining = myFoods.filter((food) => food._id !== id);
+                            setMyFoods(remaining);
+                        }
+
+                    });
+            }
+        });
+    }
+    return (
+        <div>
             <h1>My Foods</h1>
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="mb-4 ">
-                    
+
                 </div>
                 <div className="overflow-x-auto">
                     <table className="table-auto w-full border-collapse border border-gray-300">
@@ -75,7 +95,7 @@ import { Link } from 'react-router-dom';
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
                                         <Link to={`/foodUpdate/${myFood._id}`}><button className='btn btn-sm'>Update</button></Link>
-                                        <button onClick={()=>handleDelete(myFood._id)} className='btn btn-sm'>Delete</button>
+                                        <button onClick={() => handleDelete(myFood._id)} className='btn btn-sm'>Delete</button>
                                     </td>
                                 </tr>
                             ))}
@@ -84,7 +104,7 @@ import { Link } from 'react-router-dom';
                 </div>
             </div>
         </div>
-        );
-    };
+    );
+};
 
-    export default MyFoods;
+export default MyFoods;

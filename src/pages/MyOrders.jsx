@@ -1,20 +1,34 @@
 import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../context/AuthContext';
+import Swal from 'sweetalert2';
+import useAxiosSecure from '../custom hooks/useAxiosSecure';
 
 const MyOrders = () => {
     const { user, loading } = useContext(AuthContext);
     const [myOrders, setMyOrders] = useState([]);
-   
+    const axiosSecure = useAxiosSecure();
     useEffect(() => {
-        fetch(`http://localhost:5000/purchase?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => {
-                
-                setMyOrders(data);
-            })
+        axiosSecure.get(`/purchase?email=${user?.email}`)
+        .then(res => setMyOrders(res.data))
+
     }, [user?.email]);
     const handleDelete= (id) => {
-        fetch(`http://localhost:5000/allPurchase/${id}`, {
+         Swal.fire({
+                        title: "Are you sure?",
+                        text: "You want to delete this item??",
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonColor: "#3085d6",
+                        cancelButtonColor: "#d33",
+                        confirmButtonText: "Yes, delete it!"
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: "Your file has been deleted.",
+                                icon: "success"
+                            });
+                   fetch(`http://localhost:5000/allPurchase/${id}`, {
             method: "DELETE",
         })
             .then((res) => {
@@ -31,6 +45,8 @@ const MyOrders = () => {
                     setMyOrders(remaining);
                 }
             });
+                    }
+                });
     } 
    
     return (
