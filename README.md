@@ -1,8 +1,35 @@
-# React + Vite
+# Bhojonaloy Restaurant
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Purpose
 
-Currently, two official plugins are available:
+Bhojonaloy Restaurant is a modern web application designed to enhance the restaurant experience for customers and staf. This platform offers a seamless way for users to browse the menu, place orders, and manage their dining preferences online.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live URL
+
+[Visit the live website](https://neon-cranachan-cb0cf1.netlify.app/)
+
+## Key Features
+
+- **Login Logout and register**
+- **Protected Rout**
+- **Dark and Light mode**
+- **Show top food based on sell**
+- **add Food and order food.**
+
+
+## Technologies and NPM Packages Used
+
+### Frontend
+- **React**
+- **Tailwind CSS**
+- **Daisy UI**: 
+
+### Backend
+- **Node.js**
+- **Firebase**
+- **mongoDB**
+
+### NPM Packages
+1. `react-router-dom`
+2. `axios`
+3. `dotenv`
