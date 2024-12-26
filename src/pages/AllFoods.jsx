@@ -3,20 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const AllFoods = () => {
-    
+    const[search, setSearch] = useState('')
     const[allFoods, setAllFoods] = useState([])
 
     
     useEffect(() => {
-        axios.get( `http://localhost:5000/allFoods`)
+        axios.get( `http://localhost:5000/allFoods?search=${search}`)
         .then(res => setAllFoods(res.data))
-    },[])
+    },[search])
     return (
         <div className="p-8  min-h-screen">
             <h1 className="text-3xl font-bold text-center text-white mb-8">All Foods</h1>
-            <div>
+            <div className='w-6/12 mx-auto my-7'>
                 <label className="input input-bordered flex items-center gap-2">
-                    <input  type="text" className="grow" placeholder="Search" />
+                    <input onChange={e => setSearch(e.target.value)} type="text" className="grow" placeholder="Search by food name"   />
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 16 16"
