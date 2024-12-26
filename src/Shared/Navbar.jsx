@@ -2,9 +2,15 @@ import React, { useContext } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import Swal from 'sweetalert2';
+import { FaMoon, FaSun } from 'react-icons/fa';
+import  { ThemeContext } from '../context/ThemeProvider';
 
 const Navbar = () => {
     const {user, logout} = useContext(AuthContext)
+    const {isDarkMode, handleDarkMode} = useContext(ThemeContext)
+
+    console.log(isDarkMode);
+    
     const item = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='allFoods'>All Foods</NavLink></li>
@@ -18,6 +24,7 @@ const Navbar = () => {
                             draggable: true
                           });
     }
+    
     return (
         <div className="navbar bg-base-100  md:w-10/12 mx-auto">
             <div className="navbar-start">
@@ -43,33 +50,37 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <a className="text-sm md:text-xl">Bhojonaloy</a>
+              
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                     {item}
                 </ul>
             </div>
-            <div className="navbar-end flex items-center ">
+            <div className="navbar-end flex items-center">
                 {
-                    user?.email ?
-                     <div className="dropdown dropdown-end">
-                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                        <div className="w-10 rounded-full">
-                            <img
-                                alt="Tailwind CSS Navbar component"
-                                src= {user.photoURL} />
-                        </div>
-                    </div>
-                    <ul
-                        tabIndex={0}
-                        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                        <Link to={'myOrders'}> <li className='btn btn-sm w-full'>My Orders</li> </Link>
-                        <Link to={'addFood'}> <li className='btn btn-sm w-full'>Add food</li> </Link>
-                        <Link to={'myFoods'}> <li className='btn btn-sm w-full'>My Foods</li> </Link>
-                       
-                    </ul>
-                    <button onClick={handleLogout} className='btn'>Logout</button>
-                </div> : <Link to={'login'} className='btn'>Login</Link>
+                    user?.email ?<>
+                                 <button onClick={handleDarkMode} className='text-2xl mr-3'>{isDarkMode? <FaSun></FaSun> : <FaMoon></FaMoon>}</button>
+                    <div className="dropdown dropdown-end flex">
+       
+                   <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                       <div className="w-10 rounded-full">
+                           <img
+                               alt="Tailwind CSS Navbar component"
+                               src= {user.photoURL} />
+                       </div>
+                   </div>
+                   <ul
+                       tabIndex={0}
+                       className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                       <Link to={'myOrders'}> <li className='btn btn-sm w-full'>My Orders</li> </Link>
+                       <Link to={'addFood'}> <li className='btn btn-sm w-full'>Add food</li> </Link>
+                       <Link to={'myFoods'}> <li className='btn btn-sm w-full'>My Foods</li> </Link>
+                      
+                   </ul>
+                   
+               </div> 
+               <button onClick={handleLogout} className='btn'>Logout</button> </>: <Link to={'login'} className='btn'>Login</Link>
                 }
                 
                 

@@ -14,13 +14,14 @@ import MyFoods from "../pages/MyFoods";
 import Gallery from "../pages/Gallery";
 import PrivateRout from "./PrivateRout";
 import FoodUpdate from "../pages/FoodUpdate";
+import ErrorPage from "../Shared/ErrorPage";
   
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <MainLayout></MainLayout>,
-      errorElement: <h1>path not found</h1>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: '/',
@@ -37,12 +38,12 @@ import FoodUpdate from "../pages/FoodUpdate";
         {
           path:"foodDetails/:id",
           element: <FoodDetails></FoodDetails>,
-          loader:({params}) => fetch(`http://localhost:5000/allFoods/${params.id}`)
+          loader:({params}) => fetch(`https://bhojonaloy-restaurant-server.vercel.app/allFoods/${params.id}`)
         },
         {
           path: 'purchase/:id',
           element: <PrivateRout><Purchase></Purchase></PrivateRout>,
-          loader:({params}) => fetch(`http://localhost:5000/allFoods/${params.id}`)
+          loader:({params}) => fetch(`https://bhojonaloy-restaurant-server.vercel.app/allFoods/${params.id}`)
         },
         {
           path: 'myOrders',
@@ -51,7 +52,7 @@ import FoodUpdate from "../pages/FoodUpdate";
         {
           path: 'allFoods',
           element: <AllFoods></AllFoods>,
-          // loader:() => fetch('http://localhost:5000/allFoods')
+          // loader:() => fetch('https://bhojonaloy-restaurant-server.vercel.app/allFoods')
         },
         {
           path: 'addFood',
@@ -69,7 +70,7 @@ import FoodUpdate from "../pages/FoodUpdate";
         {
           path:'foodUpdate/:id',
           element: <FoodUpdate></FoodUpdate>,
-          loader:({params}) => fetch(`http://localhost:5000/allFoods/${params.id}`)
+          loader:({params}) => fetch(`https://bhojonaloy-restaurant-server.vercel.app/allFoods/${params.id}`)
         },
         
       ]

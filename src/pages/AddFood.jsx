@@ -1,12 +1,15 @@
 import React, { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
+import Loading from '../Shared/Loading';
 
 const AddFood = () => {
     const { user, loading } = useContext(AuthContext);
+    const navigate = useNavigate()
 
     if (loading) {
-        return <h1>Loading...</h1>;
+        return <Loading></Loading>;
     }
 
     const handleAddFood = (e) => {
@@ -25,9 +28,8 @@ const AddFood = () => {
             description: e.target.description.value,
         };
 
-        console.log(newFoodItem);
 
-        fetch("http://localhost:5000/foods", {
+        fetch("https://bhojonaloy-restaurant-server.vercel.app/foods", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -43,8 +45,12 @@ const AddFood = () => {
                 draggable: true
               });
               e.target.reset();
+              navigate('/')
         });
     };
+
+
+    
 
     return (
         <div className="min-h-screen bg-gray-900 text-gray-100 flex items-center justify-center">

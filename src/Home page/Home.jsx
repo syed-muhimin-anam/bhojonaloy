@@ -13,16 +13,18 @@ const Home = () => {
             </header>
 
             <main>
-                <div>
+                <div className='my-20'>
                 <TopFoods></TopFoods>
-                <Link  to={'/allFoods'}><button className='btn'>See All</button></Link>
+                <div className='text-center'>
+                <Link  to={'/allFoods'}><button className='btn '>See All</button></Link>
+                </div>
                 </div>
 
-                <div>
+                <div className='my-20'>
                     <Menu></Menu>
                 </div>
 
-                <div>
+                <div className='my-20'>
                     <Schedule></Schedule>
                 </div>
                 

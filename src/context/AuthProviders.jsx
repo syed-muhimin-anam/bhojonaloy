@@ -18,6 +18,8 @@ const AuthProviders = ({ children }) => {
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
+    
+
     // Create user with email and password
     const createUser = (email, password) => {
         setLoading(true);
@@ -55,16 +57,16 @@ const AuthProviders = ({ children }) => {
             setUser(currentUser);
             if (currentUser?.email) {
                 const user = {email: currentUser.email};
-                axios.post('http://localhost:5000/jwt', user, {withCredentials: true})
+                axios.post('https://bhojonaloy-restaurant-server.vercel.app/jwt', user, {withCredentials: true})
                 .then(res => {
-                    console.log(res.data)
+                    // console.log(res.data)
                     setLoading(false);
                 }) 
             }
             else{
-                axios.post('http://localhost:5000/logout', {}, {withCredentials: true})
+                axios.post('https://bhojonaloy-restaurant-server.vercel.app/logout', {}, {withCredentials: true})
                 .then(res => {
-                    console.log("logout",res.data )
+                    // console.log("logout",res.data )
                     setLoading(false);
                 }) 
             }
@@ -82,7 +84,8 @@ const AuthProviders = ({ children }) => {
         logout,
         googleLogin,
         userLogIn,
-        updateUserProfile
+        updateUserProfile,
+        
     };
 
     return (

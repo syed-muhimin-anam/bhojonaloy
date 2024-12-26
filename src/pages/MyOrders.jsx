@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import AuthContext from '../context/AuthContext';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../custom hooks/useAxiosSecure';
+import Loading from '../Shared/Loading';
 
 const MyOrders = () => {
     const { user, loading } = useContext(AuthContext);
@@ -9,7 +10,11 @@ const MyOrders = () => {
     const axiosSecure = useAxiosSecure();
     useEffect(() => {
         axiosSecure.get(`/purchase?email=${user?.email}`)
-        .then(res => setMyOrders(res.data))
+        .then(res => {
+            if (loading ) {
+                return <Loading />;
+            }
+            setMyOrders(res.data)})
 
     }, [user?.email]);
     const handleDelete= (id) => {
@@ -28,18 +33,20 @@ const MyOrders = () => {
                                 text: "Your file has been deleted.",
                                 icon: "success"
                             });
-                   fetch(`http://localhost:5000/allPurchase/${id}`, {
+                   fetch(`https://bhojonaloy-restaurant-server.vercel.app/allPurchase/${id}`, {
             method: "DELETE",
         })
             .then((res) => {
-                // if (loading === true) {
-                //     return <Loading />;
-                // }
+                if (loading ) {
+                    return <Loading />;
+                }
                 return res.json();
             })
             .then((data) => {
                 // console.log(data);
-                
+                if (loading ) {
+                    return <Loading />;
+                }
                 if (data.deletedCount > 0) {
                     const remaining = myOrders.filter((order) => order._id !== id);
                     setMyOrders(remaining);
@@ -50,8 +57,8 @@ const MyOrders = () => {
     } 
    
     return (
-        <div>
-            <h1>my MyOrders</h1>
+        <div className='w-10/12 mx-auto'>
+            <h1 className='text-center text-2xl text-purple-700 '>My Orders</h1>
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="mb-4 ">
                     {/* <button onClick={handleSort} className="btn">
@@ -63,11 +70,11 @@ const MyOrders = () => {
                         <thead>
                             <tr>
                                 <th className="border border-gray-300 px-4 py-2 text-left">SL</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Category</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Item</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Food name</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Price</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Stock</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Details</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Origin</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Date & time</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">quantity</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Delete</th>
                             </tr>
                         </thead>
@@ -88,7 +95,7 @@ const MyOrders = () => {
                                         {myOrder.purchaseTime}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
-                                        {myOrder.foodImage}
+                                        {myOrder.purchase}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
                                        <button onClick={() => handleDelete(myOrder._id)} className='btn btn-sm'>Delete</button>

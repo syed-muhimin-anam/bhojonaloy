@@ -3,10 +3,13 @@ import AuthContext from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../custom hooks/useAxiosSecure';
+import Loading from '../Shared/Loading';
 
 const MyFoods = () => {
     const [myFoods, setMyFoods] = useState([]);
-    const { user } = useContext(AuthContext);
+    console.log(myFoods);
+    
+    const { user, loading } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
     useEffect(() => {
  
@@ -32,13 +35,13 @@ const MyFoods = () => {
                     text: "Your file has been deleted.",
                     icon: "success"
                 });
-                fetch(`http://localhost:5000/allFoods/${id}`, {
+                fetch(`https://bhojonaloy-restaurant-server.vercel.app/allFoods/${id}`, {
                     method: "DELETE",
                 })
                     .then((res) => {
-                        // if (loading === true) {
-                        //     return <Loading />;
-                        // }
+                        if (loading) {
+                            return <Loading />;
+                        }
                         return res.json();
                     })
                     .then((data) => {
@@ -55,8 +58,8 @@ const MyFoods = () => {
     }
     return (
         <div>
-            <h1>My Foods</h1>
-            <div className="px-4 sm:px-6 lg:px-8">
+            <h1 className='text-center text-2xl text-purple-700 '>My Foods</h1>
+            <div className="px-4 sm:px-6 lg:px-8 w-10/12 mx-auto">
                 <div className="mb-4 ">
 
                 </div>
@@ -65,11 +68,13 @@ const MyFoods = () => {
                         <thead>
                             <tr>
                                 <th className="border border-gray-300 px-4 py-2 text-left">SL</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Food Name</th>
                                 <th className="border border-gray-300 px-4 py-2 text-left">Category</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Item</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Price</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Stock</th>
-                                <th className="border border-gray-300 px-4 py-2 text-left">Details</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">price</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Origin</th>
+                                <th className="border border-gray-300 px-4 py-2 text-left">Quantity</th>
+                                
+                             
                                 <th className="border border-gray-300 px-4 py-2 text-left">Up/Del</th>
 
                             </tr>
@@ -82,17 +87,18 @@ const MyFoods = () => {
                                         {myFood.foodName}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
+                                            {myFood.foodCategory}
+                                        </td>
+                                    <td className="border border-gray-300 px-4 py-2">
                                         {myFood.price}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
                                         {myFood.foodOrigin}
                                     </td>
                                     <td className="border border-gray-300 px-4 py-2">
-                                        {myFood.purchaseTime}
+                                        {myFood.quantity}
                                     </td>
-                                    <td className="border border-gray-300 px-4 py-2">
-                                        {myFood.foodImage}
-                                    </td>
+                                        
                                     <td className="border border-gray-300 px-4 py-2">
                                         <Link to={`/foodUpdate/${myFood._id}`}><button className='btn btn-sm'>Update</button></Link>
                                         <button onClick={() => handleDelete(myFood._id)} className='btn btn-sm'>Delete</button>

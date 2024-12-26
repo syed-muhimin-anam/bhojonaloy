@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import AuthContext from '../context/AuthContext';
 import Swal from 'sweetalert2';
 
@@ -7,6 +7,8 @@ const Purchase = () => {
     const { user, loading } = useContext(AuthContext);
     const purchaseFood = useLoaderData();
     const [quantity, setQuantity] = useState(purchaseFood?.purchase);
+    const [available, setAvailable] = useState(purchaseFood?.quantity);
+    const navigate = useNavigate();
 
     if (loading) {
         return <h1>Loading.....</h1>;
@@ -14,8 +16,24 @@ const Purchase = () => {
 
     const handlePurchase = (e) => {
         e.preventDefault();
-    
         const newPurchase = parseFloat(e.target.quantity.value);
+      if (newPurchase > available) {
+       return Swal.fire({
+            title: "you can't buy more than the available numbers.",
+            icon: "error",
+            draggable: true
+          });
+      }
+      if (user.email === purchaseFood.addedBy.email) {
+      return  Swal.fire({
+            title: "you can't buy your own food.",
+            icon: "error",
+            draggable: true
+          });
+      }
+      else{
+      
+        const remainingQuantity = available - parseFloat(e.target.quantity.value);
     
         const updatedQuantity = quantity + newPurchase;
     
@@ -31,15 +49,16 @@ const Purchase = () => {
             purchaseTime: new Date().toLocaleString(),
         };
     
-        console.log("Purchase Details:", purchaseDetails);
+    
     
         
         setQuantity(updatedQuantity);
+        setAvailable(remainingQuantity);
     
-        console.log("Total Quantity (after update):", updatedQuantity);
+  
     
        
-        fetch("http://localhost:5000/purchase", {
+        fetch("https://bhojonaloy-restaurant-server.vercel.app/purchase", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -48,30 +67,33 @@ const Purchase = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log("Server Response:", data);
+               
                  Swal.fire({
-                                title: "Successfully added",
+                                title: "Successfully purchase",
                                 icon: "success",
                                 draggable: true
                               });
-                              
+
+                                    
                 if (data.insertedId) {
-                    fetch(`http://localhost:5000/allFoods/${purchaseDetails.food_id}`, {
+                    fetch(`https://bhojonaloy-restaurant-server.vercel.app/allFoods/${purchaseDetails.food_id}`, {
                         method: 'PUT',
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({ purchase: updatedQuantity }),
+                        body: JSON.stringify({ purchase: updatedQuantity, quantity: remainingQuantity }),
                     })
                         .then(res => res.json())
                         .then(data => {
-                            console.log(data);
+                            // console.log(data);
                         })
                         .catch(err => console.error("Error:", err));
                 }
             })
             .catch((error) => console.error("Error:", error));
             e.target.reset();
+            navigate('/')
+      }
     };
     
     return (
@@ -133,19 +155,50 @@ const Purchase = () => {
                             className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
                         />
                     </div>
+                    <div>
+                        {
+                            available < 1 ? <p className='text-red-500'>item is not available</p> :  <p>Available quantity is: {available}</p>
+                        }
+                       
+                    </div>
                     <button
-                        type="submit"
-                        className="w-full px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded transition"
-                    >
-                        Purchase
-                    </button>
+    type="submit"
+    className={`w-full px-4 py-2 rounded transition ${
+        available > 0 ? 'bg-teal-500 hover:bg-teal-600 text-white' : 'bg-gray-400 text-gray-300 cursor-not-allowed'
+    }`}
+    disabled={available <= 0} // Disable if available is 0 or less
+>
+    Purchase
+</button>
+
                 </form>
-                {/* <p className="mt-4 text-sm text-gray-400">
-                    Total Quantity: <span className="font-bold">{quantity}</span>
-                </p> */}
+               
             </div>
         </div>
     );
 };
 
 export default Purchase;
+
+
+
+
+
+
+
+
+// {
+//     "_id": "6769caf0b3ae63d4789f6ec2",
+//     "foodName": "Chicken Biryani",
+//     "foodImage": "https://example.com/images/chicken-biryani.jpg",
+//     "foodCategory": "Main Course",
+//     "quantity": 20,
+//     "price": 200,
+//     "purchase": 50,
+//     "addedBy": {
+//       "name": "John Doe",
+//       "email": "john.doe@example.com"
+//     },
+//     "foodOrigin": "India",
+//     "description": "Aromatic basmati rice cooked with marinated chicken, spices, and saffron. Ingredients include rice, chicken, yogurt, spices, and onions."
+//   },

@@ -9,6 +9,7 @@ const FoodUpdate = () => {
     const prevFoodDtls = useLoaderData();
     const handleUpdate = e => {
         e.preventDefault();
+        console.log("Submitted Quantity:", e.target.quantity.value);
         const newFoodItem = {
             // event.target.photo.value === "" ? loadedEquipment.photo : event.target.photo.value;
             foodName: e.target.foodName.value === '' ? prevFoodDtls.foodName : e.target.foodName.value,
@@ -24,9 +25,9 @@ const FoodUpdate = () => {
             description: e.target.description.value === '' ? prevFoodDtls.description : e.target.description.value,
         };
 
-        console.log(newFoodItem);
+       
 
-        fetch(`http://localhost:5000/allFoods/${prevFoodDtls._id}`, {
+        fetch(`https://bhojonaloy-restaurant-server.vercel.app/allFoods/${prevFoodDtls._id}`, {
             method: "PATCH",
             headers: {
               "Content-Type": "application/json",
@@ -50,7 +51,7 @@ const FoodUpdate = () => {
             });
     }
     return (
-        <div className="min-h-screen bg-gray-900 text-gray-100 flex items-center justify-center">
+        <div className="min-h-screen  text-gray-100 flex items-center justify-center">
         <div className="max-w-lg w-full bg-gray-800 p-6 rounded-lg shadow-lg">
             <h1 className="text-2xl font-bold text-center mb-4">Update your Food Item</h1>
             <form onSubmit={handleUpdate} className="space-y-4">
@@ -161,7 +162,7 @@ const FoodUpdate = () => {
                 </div>
                 <button
                     type="submit"
-                    className="w-full px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded transition"
+                    className="w-full px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded transition"
                 >
                    Update
                 </button>

@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 
 const axiosInstance = axios.create({
-    baseURL: 'http://localhost:5000',
+    baseURL: 'https://bhojonaloy-restaurant-server.vercel.app',
     withCredentials: true
 })
 
@@ -28,8 +28,12 @@ const useAxiosSecure = () => {
                         navigate('/login')
                     })
                     .catch(error => {
-                        
-                        console.log(error.message);
+                        Swal.fire({
+                            title: error.message,
+                            icon: "error",
+                            draggable: true
+                        });
+                       
                     })
             }
             return Promise.reject(error);

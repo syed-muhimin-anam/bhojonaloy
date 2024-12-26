@@ -5,17 +5,16 @@ import { Link } from 'react-router-dom';
 const Banner = () => {
     return (
         <div
-            className="hero min-h-[600px] mt-10"
+            className="hero min-h-[600px] mt-10 "
             style={{
                 backgroundImage: `url(${bannerImage})`,
             }}>
-            <div className=""></div>
+            <div className="hero-overlay bg-opacity-60"></div>
             <div className="hero-content text-neutral-content text-center">
-                <div className="max-w-md hero-overlay bg-opacity-60 p-10 rounded-xl">
+                <div className="max-w-md  p-10 rounded-xl">
                     <h1 className="mb-5 text-5xl font-bold text-white">Hello there</h1>
                     <p className="mb-5 text-white">
-                        Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem
-                        quasi. In deleniti eaque aut repudiandae et a id nisi.
+                        Welcome to bhojonaloy Resaurant. we are the best  restaurant in the town. we r here to serve you the wolds best food and services i hope you will like it.
                     </p>
                     <Link to={'/allFoods'}>   <button className="btn btn-primary">All Foods</button></Link>
                  

@@ -1,23 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../Shared/Navbar';
 import Footer from '../Shared/Footer';
+import { ThemeContext } from '../context/ThemeProvider';
 
 const MainLayout = () => {
+    const { isDarkMode } = useContext(ThemeContext)
     return (
-        <div>
-           <div>
-              <Navbar></Navbar>
-            </div>
+        <div data-theme={isDarkMode? 'dark' : "light"}>
 
-            <div>
-               <Outlet></Outlet>
-            </div>
+            <Navbar></Navbar>
 
-            <div>
-                <Footer></Footer>
-            </div>
-            
+
+
+            <Outlet></Outlet>
+
+
+
+            <Footer></Footer>
+
+
         </div>
     );
 };
