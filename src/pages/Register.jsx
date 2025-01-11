@@ -51,8 +51,8 @@ const Register = () => {
         
     }
     return (
-        <div className="md:w-8/12 mx-auto">
-        <h1 className="text-2xl font-bold text-center my-5">Register</h1>
+        <div className="md:w-8/12 mx-auto mt-[60px] pt-10">
+        <h1 className="text-4xl text-purple-700 font-bold text-center my-2">Register</h1>
             <form onSubmit={handleCreateUser}  className="card-body">
                 {/* name************************************* */}
                 <div className="form-control">
@@ -86,10 +86,10 @@ const Register = () => {
                     </label>
                 </div>
                 <div className="form-control mt-6">
-                    <button className="btn btn-primary">Register</button>
+                    <button className="btn bg-purple-400">Register</button>
                     {/* <h1 className="text-center">or</h1>
                     <button onClick={handleGoogle} className="btn btn-primary">Continue With Google</button> */}
-                    <p>Don't have any account? <Link className="underline text-blue-500" to='/login'>Login</Link></p>
+                    <p>Don't have any account? <Link className="underline text-purple-700" to='/login'>Login</Link></p>
                 </div>
             </form>
     </div>

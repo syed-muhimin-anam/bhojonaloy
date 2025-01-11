@@ -15,6 +15,9 @@ const Navbar = () => {
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink to='allFoods'>All Foods</NavLink></li>
         <li><NavLink to='/gallery'>Gallery</NavLink></li>
+        <li><NavLink to='/addFood'>Add Food</NavLink></li>
+        <li><NavLink to='/myFoods'>My Food</NavLink></li>
+        <li><NavLink to='/myOrders'>My Orders</NavLink></li>
     </>;
     const handleLogout = () => {
             logout();
@@ -26,7 +29,7 @@ const Navbar = () => {
     }
     
     return (
-        <div className="navbar bg-base-100  md:w-10/12 mx-auto">
+        <div className="navbar bg-purple-400 w-full px-5 md:px-12 fixed top-0 z-10 text-black mx-auto">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={50} role="button" className="btn btn-ghost lg:hidden">
@@ -49,7 +52,7 @@ const Navbar = () => {
                         {item}
                     </ul>
                 </div>
-                <a className="text-sm md:text-xl">Bhojonaloy</a>
+                <a className="text-sm md:text-xl font-bold">Bhojonaloy</a>
               
             </div>
             <div className="navbar-center hidden lg:flex">
@@ -58,10 +61,11 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end flex items-center">
+            <button onClick={handleDarkMode} className='text-2xl mr-3'>{isDarkMode? <FaSun></FaSun> : <FaMoon></FaMoon>}</button>
+
                 {
                     user?.email ?<>
-                                 <button onClick={handleDarkMode} className='text-2xl mr-3'>{isDarkMode? <FaSun></FaSun> : <FaMoon></FaMoon>}</button>
-                    <div className="dropdown dropdown-end flex">
+                    <div className="dropdown dropdown-end flex mr-3">
        
                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                        <div className="w-10 rounded-full">
@@ -80,7 +84,7 @@ const Navbar = () => {
                    </ul>
                    
                </div> 
-               <button onClick={handleLogout} className='btn'>Logout</button> </>: <Link to={'login'} className='btn'>Login</Link>
+               <button onClick={handleLogout} className='font-bold' >Logout</button> </>: <Link to={'login'} className='font-bold'>Login</Link>
                 }
                 
                 

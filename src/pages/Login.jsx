@@ -55,8 +55,8 @@ const Login = () => {
             })
     }
     return (
-        <div className="md:w-8/12 mx-auto">
-            <h1 className="text-2xl font-bold text-center my-5">Login</h1>
+        <div className="md:w-8/12 mx-auto mt-[60px] pt-10">
+            <h1 className="text-4xl font-bold text-purple-700 text-center my-5">Login</h1>
             <form onSubmit={handleLogin} className="card-body">
                 {/* email************************************* */}
                 <div className="form-control">
@@ -76,10 +76,10 @@ const Login = () => {
                     </label>
                 </div>
                 <div className="form-control mt-6">
-                    <button className="btn btn-primary">Login</button>
+                    <button className="btn bg-purple-400">Login</button>
                     <h1 className="text-center">or</h1>
-                    <button onClick={handleGoogleLogin} className="btn btn-primary">Continue With Google</button>
-                    <p>Don't have any account? <Link className="underline text-blue-500" to='/register'>Register</Link></p>
+                    <button onClick={handleGoogleLogin} className="btn bg-purple-400">Continue With Google</button>
+                    <p>Don't have any account? <Link className="underline text-purple-700" to='/register'>Register</Link></p>
                 </div>
             </form>
         </div>

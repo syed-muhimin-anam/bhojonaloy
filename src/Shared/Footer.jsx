@@ -3,11 +3,11 @@ import { FaHouse, FaHouseMedical } from 'react-icons/fa6';
 
 const Footer = () => {
     return (
-        <footer className="md:w-10/12 mx-auto footer  text-base-content p-10">
+        <footer className=" md:px-40 bg-purple-400 mx-auto footer  text-base-content p-10">
             <aside>
                <FaHouse className='text-2xl'></FaHouse>
                 <p>
-                  <span className='text-2xl'>  BHOJONALOY RESTAURANT. </span>
+                  <span className='text-2xl font-bold'>  BHOJONALOY RESTAURANT. </span>
                     <br />
                     we are exist since 1982. WE have a culture
                 </p>

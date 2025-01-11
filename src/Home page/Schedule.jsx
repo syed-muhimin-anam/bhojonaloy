@@ -6,7 +6,7 @@ const Schedule = () => {
     return (
         <div className='grid md:grid-cols-3'>
             <div className='text-center space-y-7'>
-                <h1 className='text-2xl text-purple-400'>Opening Hours</h1>
+                <h1 className='text-2xl text-purple-700 font-bold'>Opening Hours</h1>
                 <div>
                     <p className='text-purple-900'>Monday - Thursday</p>
                     <p>11.00am - 10.30pm</p>
@@ -24,7 +24,7 @@ const Schedule = () => {
             </div>
 
             <div className='text-center space-y-7'>
-                <h1 className='text-2xl text-purple-400'>Contact Info</h1>
+                <h1 className='text-2xl text-purple-700 font-bold'>Contact Info</h1>
                 <div>
                     <p className='text-purple-900'>Syed Muhimin Anam</p>
                     <p>Chittagong University</p>

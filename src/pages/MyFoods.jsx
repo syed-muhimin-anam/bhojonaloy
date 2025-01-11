@@ -57,13 +57,14 @@ const MyFoods = () => {
         });
     }
     return (
-        <div>
-            <h1 className='text-center text-2xl text-purple-700 '>My Foods</h1>
-            <div className="px-4 sm:px-6 lg:px-8 w-10/12 mx-auto">
+        <div className='mt-[60px] pt-10'>
+            <h1 className='text-center text-4xl font-bold text-purple-700 mb-10'>My Foods</h1>
+            <div className="px-4 sm:px-6 lg:px-8 w-10/12 mx-auto ">
                 <div className="mb-4 ">
 
                 </div>
-                <div className="overflow-x-auto">
+               <div className=' h-screen'>
+               <div className="overflow-x-auto ">
                     <table className="table-auto w-full border-collapse border border-gray-300">
                         <thead>
                             <tr>
@@ -108,6 +109,7 @@ const MyFoods = () => {
                         </tbody>
                     </table>
                 </div>
+               </div>
             </div>
         </div>
     );

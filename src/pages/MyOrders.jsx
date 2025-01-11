@@ -57,15 +57,15 @@ const MyOrders = () => {
     } 
    
     return (
-        <div className='w-10/12 mx-auto'>
-            <h1 className='text-center text-2xl text-purple-700 '>My Orders</h1>
+        <div className='w-10/12 mx-auto mt-[60px] pt-10 '>
+            <h1 className='text-center text-4xl font-bold text-purple-700 mb-10'>My Orders</h1>
             <div className="px-4 sm:px-6 lg:px-8">
                 <div className="mb-4 ">
                     {/* <button onClick={handleSort} className="btn">
                         Sort
                     </button> */}
                 </div>
-                <div className="overflow-x-auto">
+                <div className="overflow-x-auto h-screen">
                     <table className="table-auto w-full border-collapse border border-gray-300">
                         <thead>
                             <tr>

@@ -28,7 +28,6 @@ const AddFood = () => {
             description: e.target.description.value,
         };
 
-
         fetch("https://bhojonaloy-restaurant-server.vercel.app/foods", {
             method: "POST",
             headers: {
@@ -43,22 +42,19 @@ const AddFood = () => {
                 title: "Successfully added",
                 icon: "success",
                 draggable: true
-              });
-              e.target.reset();
-              navigate('/')
+            });
+            e.target.reset();
+            navigate('/')
         });
     };
 
-
-    
-
     return (
-        <div className="min-h-screen bg-gray-900 text-gray-100 flex items-center justify-center">
-            <div className="max-w-lg w-full bg-gray-800 p-6 rounded-lg shadow-lg">
-                <h1 className="text-2xl font-bold text-center mb-4">Add Food Item</h1>
-                <form onSubmit={handleAddFood} className="space-y-4">
+        <div className="min-h-screen mt-[60px] flex items-center justify-center py-10">
+            <div className="max-w-lg w-full p-8  rounded-lg shadow-lg">
+                <h1 className="text-3xl font-bold text-center text-purple-700 mb-6">Add Food Item</h1>
+                <form onSubmit={handleAddFood} className="space-y-6">
                     <div>
-                        <label className="block text-sm font-medium mb-1" htmlFor="foodName">
+                        <label className="block text-sm font-medium mb-2" htmlFor="foodName">
                             Food Name
                         </label>
                         <input
@@ -66,12 +62,12 @@ const AddFood = () => {
                             id="foodName"
                             name="foodName"
                             placeholder="Enter food name"
-                            className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1" htmlFor="foodImage">
+                        <label className="block text-sm font-medium mb-2" htmlFor="foodImage">
                             Food Image URL
                         </label>
                         <input
@@ -79,12 +75,12 @@ const AddFood = () => {
                             id="foodImage"
                             name="foodImage"
                             placeholder="Enter food image URL"
-                            className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1" htmlFor="foodCategory">
+                        <label className="block text-sm font-medium mb-2" htmlFor="foodCategory">
                             Food Category
                         </label>
                         <input
@@ -92,12 +88,12 @@ const AddFood = () => {
                             id="foodCategory"
                             name="foodCategory"
                             placeholder="Enter food category"
-                            className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1" htmlFor="quantity">
+                        <label className="block text-sm font-medium mb-2" htmlFor="quantity">
                             Quantity
                         </label>
                         <input
@@ -105,12 +101,12 @@ const AddFood = () => {
                             id="quantity"
                             name="quantity"
                             placeholder="Enter quantity"
-                            className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1" htmlFor="price">
+                        <label className="block text-sm font-medium mb-2" htmlFor="price">
                             Price
                         </label>
                         <input
@@ -118,27 +114,27 @@ const AddFood = () => {
                             id="price"
                             name="price"
                             placeholder="Enter price"
-                            className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1">Added By</label>
+                        <label className="block text-sm font-medium mb-2">Added By</label>
                         <input
                             type="text"
                             value={user?.displayName}
                             readOnly
-                            className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none mb-2"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none mb-2"
                         />
                         <input
                             type="email"
                             value={user?.email}
                             readOnly
-                            className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none"
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1" htmlFor="foodOrigin">
+                        <label className="block text-sm font-medium mb-2" htmlFor="foodOrigin">
                             Food Origin (Country)
                         </label>
                         <input
@@ -146,25 +142,25 @@ const AddFood = () => {
                             id="foodOrigin"
                             name="foodOrigin"
                             placeholder="Enter food origin country"
-                            className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                             required
                         />
                     </div>
                     <div>
-                        <label className="block text-sm font-medium mb-1" htmlFor="description">
+                        <label className="block text-sm font-medium mb-2" htmlFor="description">
                             Description
                         </label>
                         <textarea
                             id="description"
                             name="description"
                             placeholder="Enter a short description (ingredients, making procedure, etc.)"
-                            className="w-full px-4 py-2 bg-gray-700 rounded focus:outline-none"
+                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"
                             required
                         />
                     </div>
                     <button
                         type="submit"
-                        className="w-full px-4 py-2 bg-teal-500 hover:bg-teal-600 text-white rounded transition"
+                        className="w-full px-4 py-2 bg-purple-500 hover:bg-purple-700 rounded-lg transition duration-200"
                     >
                         Add Item
                     </button>
