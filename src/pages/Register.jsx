@@ -46,6 +46,8 @@ const Register = () => {
                 draggable: true
               });
         }
+
+        
         
         
         

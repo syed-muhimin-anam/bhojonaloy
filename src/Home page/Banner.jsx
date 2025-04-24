@@ -16,7 +16,7 @@ const Banner = () => {
                     <p className="mb-5 text-white">
                         Welcome to bhojonaloy Resaurant. we are the best  restaurant in the town. we r here to serve you the wolds best food and services i hope you will like it.
                     </p>
-                    <Link to={'/allFoods'}>   <button className="btn bg-purple-400">All Foods</button></Link>
+                    <Link to={'/allFoods'}>   <button className="btn bg-purple-400 text-black">All Foods</button></Link>
                  
                 </div>
             </div>

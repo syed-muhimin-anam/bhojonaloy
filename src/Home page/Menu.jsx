@@ -75,7 +75,7 @@ const Menu = () => {
           </div>
         </div>
         <div className="text-center mt-8">
-          <button className="px-6 py-2 bg-purple-400 hover:bg-purple-600 rounded-lg">
+          <button className="px-6 py-2 bg-purple-400 hover:bg-purple-600 rounded-lg text-black">
             View our full menu
           </button>
         </div>

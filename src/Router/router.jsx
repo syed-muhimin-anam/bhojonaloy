@@ -15,6 +15,12 @@ import Gallery from "../pages/Gallery";
 import PrivateRout from "./PrivateRout";
 import FoodUpdate from "../pages/FoodUpdate";
 import ErrorPage from "../Shared/ErrorPage";
+import Dashboard from "../pages/Dashboard";
+import FeedbackSection from "../pages/FeedbackSection";
+// import MyReservations from "../pages/MyReservations";
+import UpdateProfile from "../pages/UpdateProfile";
+import ProfileInfo from "../Shared/ProfileInfo";
+import { Navigate } from "react-router-dom"; 
   
 
   const router = createBrowserRouter([
@@ -54,14 +60,38 @@ import ErrorPage from "../Shared/ErrorPage";
           element: <AllFoods></AllFoods>,
           // loader:() => fetch('https://bhojonaloy-restaurant-server.vercel.app/allFoods')
         },
+      
         {
-          path: 'addFood',
-          element: <PrivateRout><AddFood></AddFood></PrivateRout>
-        },
-        {
-          path: 'myFoods',
-          element: <PrivateRout><MyFoods></MyFoods></PrivateRout>,
+          path: 'dashboard',
+          element: <PrivateRout><Dashboard></Dashboard></PrivateRout>,
 
+          children: [
+            {
+              index: true, // Default route when only "/dashboard" is visited
+              element: <Navigate to="profile" />
+            },
+            {
+              path: 'profile',
+              element: <ProfileInfo />
+            },
+            {
+              path: 'feedback',
+              element: <FeedbackSection />
+            },
+           
+            {
+              path: 'update-profile',
+              element: <UpdateProfile />
+            },
+            {
+              path: 'addFood',
+              element: <PrivateRout><AddFood></AddFood></PrivateRout>
+            },
+            {
+              path: 'myFoods',
+              element: <PrivateRout><MyFoods></MyFoods></PrivateRout>,
+            },
+          ]
         },
         {
           path:'gallery',

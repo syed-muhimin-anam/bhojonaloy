@@ -12,13 +12,18 @@ const Navbar = () => {
     console.log(isDarkMode);
     
     const item = <>
-        <li><NavLink to='/'>Home</NavLink></li>
-        <li><NavLink to='allFoods'>All Foods</NavLink></li>
-        <li><NavLink to='/gallery'>Gallery</NavLink></li>
-        <li><NavLink to='/addFood'>Add Food</NavLink></li>
-        <li><NavLink to='/myFoods'>My Food</NavLink></li>
-        <li><NavLink to='/myOrders'>My Orders</NavLink></li>
-    </>;
+    <li><NavLink to='/'>Home</NavLink></li>
+    <li><NavLink to='/allFoods'>All Foods</NavLink></li>
+    <li><NavLink to='/gallery'>Gallery</NavLink></li>
+    <li><NavLink to='/myOrders'>My Orders</NavLink></li>
+
+    {user && (
+        <>
+            <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+        </>
+    )}
+</>;
+
     const handleLogout = () => {
             logout();
              Swal.fire({
@@ -29,7 +34,7 @@ const Navbar = () => {
     }
     
     return (
-        <div className="navbar bg-purple-400 w-full px-5 md:px-12 fixed top-0 z-10 text-black mx-auto">
+        <div className="navbar bg-purple-400 w-full px-5 md:px-12 fixed top-0 z-40 text-black mx-auto">
             <div className="navbar-start">
                 <div className="dropdown">
                     <div tabIndex={50} role="button" className="btn btn-ghost lg:hidden">

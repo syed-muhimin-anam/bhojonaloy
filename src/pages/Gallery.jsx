@@ -43,8 +43,8 @@ const Gallery = () => {
   };
 
   return (
-    <div className="min-h-screen w-10/12 mx-auto flex flex-col items-center justify-center mt-[60px] pt-10">
-      <h1 className="text-5xl font-bold mb-20 text-purple-700">Gallery Page</h1>
+    <div className="min-h-screen w-10/12 mx-auto flex flex-col items-center justify-center mb-16 mt-[60px] pt-10">
+      <h1 className="text-5xl font-bold mb-10 text-purple-700">Gallery Page</h1>
 
       <div className="grid grid-cols-2  md:grid-cols-3 lg:grid-cols-5 gap-4">
         {images.map((image, index) => (

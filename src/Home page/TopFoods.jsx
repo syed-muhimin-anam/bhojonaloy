@@ -15,7 +15,7 @@ const TopFoods = () => {
     return (
         <div className="p-8 min-h-screen">
             <h1 className="text-4xl font-bold text-center mb-16 text-purple-700">Top Foods</h1>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {foods.slice(0, 4).map(food => (
                     <div key={food._id} className="card card-compact rounded-none shadow-md flex flex-col">
                         <figure>
