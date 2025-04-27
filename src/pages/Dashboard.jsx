@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   return (
     <div className="flex h-[calc(100vh-0rem)] mt-16 bg-gray-100 relative">
-      {/* Sidebar Toggle Button - Only visible on mobile */}
+  
       <button
         className="md:hidden fixed top-20 left-4 z-30 bg-white p-2 rounded shadow"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}

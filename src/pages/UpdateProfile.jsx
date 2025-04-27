@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
-import { updateProfile, updateEmail } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
+import { updateEmail } from 'firebase/auth';
 import AuthContext from '../context/AuthContext';
 import Swal from 'sweetalert2';
 
 const UpdateProfile = () => {
-  const { user } = useContext(AuthContext);
+  const { user, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate(); 
 
   const [profile, setProfile] = useState({
     name: user?.displayName || '',
@@ -20,20 +22,25 @@ const UpdateProfile = () => {
     e.preventDefault();
 
     try {
-      await updateProfile(user, {
+
+      await updateUserProfile({
         displayName: profile.name,
         photoURL: profile.photoURL,
       });
 
+   
       if (user.email !== profile.email) {
         await updateEmail(user, profile.email);
       }
 
       Swal.fire({
-        title: 'Profile Updated',
+        title: 'Profile Updated!',
         icon: 'success',
         confirmButtonText: 'OK',
+      }).then(() => {
+        navigate('/'); 
       });
+
     } catch (error) {
       console.error(error);
       Swal.fire({
@@ -61,7 +68,7 @@ const UpdateProfile = () => {
           name="email"
           value={profile.email}
           onChange={handleChange}
-          placeholder="Email"
+          placeholder="Email Address"
           className="w-full border p-2 rounded"
         />
         <input

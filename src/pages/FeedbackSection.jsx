@@ -7,7 +7,6 @@ const FeedbackSection = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Fake feedback submission
     Swal.fire({
       title: 'Thank You!',
       text: 'Thanks for your feedback!',

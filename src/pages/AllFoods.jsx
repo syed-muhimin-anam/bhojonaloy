@@ -6,10 +6,10 @@ const AllFoods = () => {
     const [search, setSearch] = useState('');
     const [allFoods, setAllFoods] = useState([]);
     const [sortLowToHigh, setSortLowToHigh] = useState(false);
-    const [loading, setLoading] = useState(false); // ✅ Added loading state
+    const [loading, setLoading] = useState(false); 
 
     useEffect(() => {
-        setLoading(true); // ✅ Start loading before request
+        setLoading(true); 
         axios.get(`https://bhojonaloy-restaurant-server.vercel.app/allFoods?search=${search}`)
             .then(res => {
                 let foods = res.data;
@@ -17,9 +17,9 @@ const AllFoods = () => {
                     foods = [...foods].sort((a, b) => a.price - b.price);
                 }
                 setAllFoods(foods);
-                setLoading(false); // ✅ Stop loading after data is fetched
+                setLoading(false); 
             })
-            .catch(() => setLoading(false)); // ✅ Stop loading on error too
+            .catch(() => setLoading(false)); 
     }, [search, sortLowToHigh]);
 
     const handleSort = () => {
@@ -60,7 +60,7 @@ const AllFoods = () => {
                 </button>
             </div>
 
-            {/* ✅ Show loader while data is being fetched */}
+         
             {loading ? (
                 <div className="flex justify-center items-center min-h-[200px]">
                     <span className="loading loading-spinner loading-lg text-purple-600"></span>
